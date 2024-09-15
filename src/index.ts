@@ -4,11 +4,11 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 const cors = require("cors");
-//domain whitelist
-const whitelist = ["http://localhost:5173"];
+
+const allowedOrigins = ["https://mern-vercel-render-front.vercel.app"]; // Replace with your actual front-end URL
 const corsOptions = {
-  origin: function (origin: any, callback: any) {
-    if (whitelist.indexOf(origin) !== -1) {
+  origin: (origin: any, callback: any) => {
+    if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
       callback(new Error("Not allowed by CORS"));
