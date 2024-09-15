@@ -1,4 +1,6 @@
 import express from "express";
+import path from "path";
+
 const app = express();
 
 const port = process.env.PORT || 3000;
@@ -19,9 +21,10 @@ const corsOptions = {
 //middleware
 app.use(cors(corsOptions));
 
+// Route to serve the index.html file
 app.get("/", (req, res) => {
-  //html
-  res.sendFile(__dirname + "/index.html");
+  // Serve index.html from the public directory
+  res.sendFile(path.join(__dirname, "index.html"));
 });
 
 app.get("/users", (req, res) => {
